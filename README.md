@@ -1,4 +1,4 @@
-# chess_engine (in progess)
+# chess_engine (in progress)
 ### Goal
 Create a fast move generator for the game of Chess using manual memory management in C.
 ### Setup
