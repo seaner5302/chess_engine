@@ -53,8 +53,8 @@ int get_piece_color(Bitboard *board, int square) {
 
 unsigned int *get_pawn_moves(Bitboard *board, int square) {
     unsigned int *moves = calloc(4, 4);
-    int move_index=0;
-    int flipped_square = 64 - square;
+    int move_index= 0;
+    int flipped_square = 63-square`;
     if (get_piece_type(board, flipped_square) != 1) {
         printf("%d\n",get_piece_type(board, flipped_square));
         printf("Square selected does not contain a pawn %d\n", square);
