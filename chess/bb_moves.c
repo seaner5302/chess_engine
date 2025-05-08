@@ -206,7 +206,10 @@ unsigned int *get_all_pieces_moves(Bitboard *board, char piece) {
             }
         }
     }
+<<<<<<< HEAD
     // implement else if check for all piece types here
+=======
+>>>>>>> 86f3a1c6bc77fb880c4d764a1df2864e688a29dc
     free(curr_moves);
     return moves;
 }
