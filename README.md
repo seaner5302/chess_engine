@@ -25,4 +25,4 @@ After testing is finished the following summary will be printed:\
 \
 ![image](https://github.com/user-attachments/assets/bc46562e-7c27-4568-96b2-d0bc68612626)\
 \
-Shoutout to https://www.chessprogramming.org/Main_Page and [lichess.org](https://lichess.org/) for providing guidance, they are both great places to learn more if you want to start your own chess programming project. I'm hoping to add more pieces shortly, exhaustive testing has been more extensive than I had planned... Unfortunately working on this project has not made me any better at chess.
+Shoutout to https://www.chessprogramming.org/Main_Page and [lichess.org](https://lichess.org/) for providing guidance, they are both great places to learn more if you want to start your own chess programming project. I'm hoping to add more pieces shortly, exhaustive testing has been more extensive than I had planned... to be continued.
