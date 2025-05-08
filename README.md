@@ -8,7 +8,7 @@ cd chess_engine/chess
 make
 ```
 ### Executing Tests
-After "make" step in Setup you can execute tests.
+After the "make" step in Setup above, you can execute tests.
 ```
 ./test_pawn_moves.x
 ```
