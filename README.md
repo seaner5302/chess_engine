@@ -22,7 +22,8 @@ Each test case should print the following textual ouput:\
 Results are expressed in algebraic notation with white pieces being lowercase and black pieces being uppercase. See https://en.wikipedia.org/wiki/Algebraic_notation_(chess) for more info about that.\
 Here is a chess board for comparison:\
 \
-<img src="https://github.com/user-attachments/assets/40a0163b-7b64-41a8-8230-ed380f165a0c" width="400" height="400">
+<img src="https://github.com/user-attachments/assets/40a0163b-7b64-41a8-8230-ed380f165a0c" width="400" height="400"> <img src="https://github.com/user-attachments/assets/974d1f66-0493-4a84-a701-b33c3ec0352b" width="400" height="400">
+
 ### Suite Results
 After testing is finished the following summary will be printed:\
 \
