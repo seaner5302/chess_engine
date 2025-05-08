@@ -13,7 +13,7 @@ After "make" step in Setup you can execute tests.
 ```
 Each test case should print the following textual ouput:\
 ![image](https://github.com/user-attachments/assets/f36a7af3-5f91-4965-85bd-ab9d4452ca3c)\
-Results are expressed in algebraic notation with white pieces being lowercase and black pieces being uppercase. See https://en.wikipedia.org/wiki/Algebraic_notation_(chess) for more info about that.\
+Results are expressed in algebraic notation with white pieces being lowercase and black pieces being uppercase.\See https://en.wikipedia.org/wiki/Algebraic_notation_(chess) for more info about that.\
 Here is a Chess board for reference!\
 ![image](https://github.com/user-attachments/assets/40a0163b-7b64-41a8-8230-ed380f165a0c)
 After testing is finished the following summary will be printed:\
