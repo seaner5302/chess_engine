@@ -22,4 +22,4 @@ Here is a Chess board for reference!\
 ### Suite Results:
 After testing is finished the following summary will be printed:\
 ![image](https://github.com/user-attachments/assets/bc46562e-7c27-4568-96b2-d0bc68612626)\
-Shoutout to https://www.chessprogramming.org/Main_Page and [lichess.org](https://lichess.org/) for providing guidance, both great places to learn more. I'm hoping to add more pieces shortly, exhaustive testing has been more extensive than I had planned :( .
+Shoutout to https://www.chessprogramming.org/Main_Page and [lichess.org](https://lichess.org/) for providing guidance, they are both great places to learn more if you want to start your own chess pprogramming project. I'm hoping to add more pieces shortly, exhaustive testing has been more extensive than I had planned :( .
