@@ -1,4 +1,6 @@
 # chess_engine (in progess)
+### Goal:
+Create a fast move generator for the game of Chess using manual memory management in C.
 ### Setup:
 ```
 git clone git@github.com:seaner5302/chess_engine.git
