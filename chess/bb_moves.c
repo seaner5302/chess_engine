@@ -76,9 +76,9 @@ unsigned int *get_pawn_moves(Bitboard *board, int square) {
         }
     }
     else {
-        if (!(get_occupied_squares(board) >> (flipped_square+8) & 1)) {
+        if (!(get_occupied_squares(board) >> (flipped_square-8) & 1)) {
             moves[move_index++] = square-8;
-            if (square >= 48 && square <= 56 && !(get_occupied_squares(board) >> (flipped_square+16) & 1)) {
+            if (square >= 48 && square <= 56 && !(get_occupied_squares(board) >> (flipped_square-16) & 1)) {
                 moves[move_index++] = square-16;
             }
         }
@@ -206,10 +206,7 @@ unsigned int *get_all_pieces_moves(Bitboard *board, char piece) {
             }
         }
     }
-<<<<<<< HEAD
     // implement else if check for all piece types here
-=======
->>>>>>> 86f3a1c6bc77fb880c4d764a1df2864e688a29dc
     free(curr_moves);
     return moves;
 }
