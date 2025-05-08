@@ -24,6 +24,6 @@ Here is a Chess board for comparison:\
 ### Suite Results
 After testing is finished the following summary will be printed:\
 \
-![image](https://github.com/user-attachments/assets/f24ef21a-d758-4b6c-b6d6-341a07d1eec7)\
+![image](https://github.com/user-attachments/assets/bc46562e-7c27-4568-96b2-d0bc68612626)\
 \
 Shoutout to https://www.chessprogramming.org/Main_Page and [lichess.org](https://lichess.org/) for providing guidance, they are both great places to learn more if you want to start your own chess programming project. I'm hoping to add more pieces shortly, exhaustive testing has been more extensive than I had planned...
