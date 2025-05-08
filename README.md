@@ -17,7 +17,7 @@ After the "make" step in Setup above, you can execute tests.
 ```
 Each test case should print the following textual ouput:\
 \
-![image](https://github.com/user-attachments/assets/e7a3a60b-1cad-495c-a724-b826023b0591)
+![image](https://github.com/user-attachments/assets/8ca3feae-5807-41ff-9025-80ee3b9de9fc)
 ## Interpreting Results
 Results are expressed in algebraic notation with white pieces being lowercase and black pieces being uppercase. See https://en.wikipedia.org/wiki/Algebraic_notation_(chess) for more info about that.\
 Here is a chess board for comparison:\
