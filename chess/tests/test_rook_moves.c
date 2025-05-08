@@ -46,13 +46,13 @@ int print_results(char *FEN, int sq, char test_name[],
     return valid;
 }
 
-void run_all_tests(char test_names[1][30], unsigned int squares[1], 
-                   char board_states[1][80], unsigned int expected_moves[1][28],
+void run_all_tests(char test_names[2][30], unsigned int squares[2], 
+                   char board_states[2][80], unsigned int expected_moves[2][28],
                    unsigned int verbose) {
-    unsigned int validity[1];
+    unsigned int validity[2];
     unsigned int successes = 0;
     unsigned int failures = 0;
-    unsigned int num_tests = 1;
+    unsigned int num_tests = 2;
     for (int bs = 0; bs < num_tests; bs++) {
         char state_name[200] = "Board state ";
         char bsc[2];
@@ -86,10 +86,13 @@ void run_all_tests(char test_names[1][30], unsigned int squares[1],
 }
 
 int main(void) {
-    unsigned int expected_moves[2][28] = {{2,3,4,5,6,7,8,9,17,25,33,41,49,57}};
-    unsigned int squares[2] = {1};
-    char test_names[2][30] = {"WR slide "};
-    char board_states[2][80] = {"7r/8/8/8/8/8/8/8 w KQkq 0 0"};
+    unsigned int expected_moves[2][28] = {{2,3,4,5,6,7,8,9,17,25,33,41,49,57},
+                                           {}};
+    unsigned int squares[2] = {1, 1};
+    char test_names[2][30] = {"WR slide max",
+                              "WR no slide"};
+    char board_states[2][80] = {"7r/8/8/8/8/8/8/8 w KQkq 0 0",
+                                "6pr/7p/8/8/8/8/8/8 w KQkq 0 0"};
     run_all_tests(test_names, squares, board_states, expected_moves, 1);
 
     return 0;
