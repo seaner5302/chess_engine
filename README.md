@@ -2,6 +2,8 @@
 ### Goal
 Create a fast move generator for the game of Chess using manual memory management in C.
 ### Setup
+To compile this C code you will need a C compiler (GCC).
+If you don't have GCC, refer to this guide https://gcc.gnu.org/install/.
 ```
 git clone git@github.com:seaner5302/chess_engine.git
 cd chess_engine/chess
