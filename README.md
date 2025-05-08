@@ -1,6 +1,7 @@
 # chess_engine (in progress)
 ### Goal
 Create a fast move generator for the game of chess using manual memory management in C.
+Implement chess logic using bitboards for board representation (https://www.chessprogramming.org/Bitboards).
 ### Setup
 To compile this C code you will need a C compiler (GCC).
 If you don't have GCC already, refer to this guide https://gcc.gnu.org/install/. \
