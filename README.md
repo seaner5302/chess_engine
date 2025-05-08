@@ -14,7 +14,7 @@ After "make" step in Setup you can execute tests.
 ./test_rook_moves.x
 ```
 Each test case should print the following textual ouput:\
-![image](https://github.com/user-attachments/assets/ace55b56-994d-4a9f-9701-1b09a22d2056)\
+![image](https://github.com/user-attachments/assets/e7a3a60b-1cad-495c-a724-b826023b0591)\
 Results are expressed in algebraic notation with white pieces being lowercase and black pieces being uppercase.\See https://en.wikipedia.org/wiki/Algebraic_notation_(chess) for more info about that.\
 Here is a Chess board for reference!\
 <img src="https://github.com/user-attachments/assets/40a0163b-7b64-41a8-8230-ed380f165a0c" width="300" height="300">
