@@ -1,2 +1,2 @@
 # Chess Engine
-rewritten in Rust.
+Rewritten in Rust for easier memory management.
