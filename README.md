@@ -32,13 +32,3 @@ To run the tests:
 ```bash
 cargo test
 ```
-
-## Project Structure
-
-- `src/bitboard.rs`: Bitboard implementation and board state management
-- `src/moves.rs`: Move generation for all chess pieces
-- `src/main.rs`: Main program entry point and example usage
-
-## License
-
-MIT
