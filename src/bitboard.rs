@@ -1,4 +1,6 @@
+// Define bitboards and implement helper functions for them
 #[derive(Debug, Clone, Copy)]
+
 pub struct Bitboard {
     pub w_pawn: u64,
     pub w_knight: u64,
@@ -14,6 +16,7 @@ pub struct Bitboard {
     pub b_king: u64,
 }
 
+#[allow(dead_code)]
 impl Bitboard {
     pub fn new() -> Self {
         Bitboard {
@@ -33,19 +36,19 @@ impl Bitboard {
     }
 
     pub fn init(&mut self) {
-        self.w_pawn = 0xFF << 48;
-        self.w_knight = 0x42 << 56;
-        self.w_bishop = 0x24 << 56;
-        self.w_rook = 0x81 << 56;
-        self.w_queen = 0x08 << 56;
-        self.w_king = 0x10 << 56;
+        self.w_pawn = 0xFF << 48; // 11111111
+        self.w_knight = 0x42 << 56; // 01000010
+        self.w_bishop = 0x24 << 56; // 00100100
+        self.w_rook = 0x81 << 56; // 10000001
+        self.w_queen = 0x08 << 56; // 00001000
+        self.w_king = 0x10 << 56; // 00010000
 
-        self.b_pawn = 0xFF << 8;
-        self.b_knight = 0x42;
-        self.b_bishop = 0x24;
-        self.b_rook = 0x81;
-        self.b_queen = 0x08;
-        self.b_king = 0x10;
+        self.b_pawn = 0xFF << 8; // 11111111
+        self.b_knight = 0x42; // 01000010
+        self.b_bishop = 0x24; // 00100100
+        self.b_rook = 0x81; // 10000001
+        self.b_queen = 0x08; // 00001000
+        self.b_king = 0x10; // 00010000
     }
 
     pub fn clear(&mut self) {
@@ -69,6 +72,7 @@ impl Bitboard {
         self.b_pawn | self.b_knight | self.b_bishop | self.b_rook | self.b_queen | self.b_king
     }
 
+    // Convert bitboard struct to string 
     pub fn to_string(&self) -> String {
         let mut board = vec!['-'; 72];
         for i in 0..8 {
@@ -81,6 +85,7 @@ impl Bitboard {
             self.b_pawn, self.b_knight, self.b_bishop, self.b_rook, self.b_queen, self.b_king,
         ];
 
+        // Iterate through each piece type and its corresponding bitboard
         for (piece, &bitboard) in piece_names.iter().zip(pieces.iter()) {
             for i in 0..64 {
                 if (bitboard >> i) & 1 == 1 {
@@ -92,15 +97,18 @@ impl Bitboard {
             }
         }
 
+        // Convert board vector to string
         board.iter().collect()
     }
 
+    // Convert from FEN string to bitboard struct
     pub fn from_fen(fen: &str) -> Self {
         let mut board = Bitboard::new();
         let mut parts = fen.split_whitespace();
         let position = parts.next().unwrap();
         let ranks: Vec<&str> = position.split('/').collect();
         
+        // Iterate through each rank and its corresponding bitboard
         for (rank_idx, rank) in ranks.iter().enumerate() {
             let mut file = 0;
             for c in rank.chars() {

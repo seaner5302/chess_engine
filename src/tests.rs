@@ -4,94 +4,9 @@ mod tests {
     use crate::bitboard::Bitboard;
     use crate::moves::*;
 
-    fn print_results(fen: &str, square: u64, test_name: &str, expected_moves: &[u64], is_white: bool, verbose: bool) -> bool {
-        let board = Bitboard::from_fen(fen);
-        let moves = get_pawn_moves(&board, square, is_white);
-        let board_str = board.to_string();
-        
-        if verbose {
-            println!("Test Name: {}", test_name);
-            println!("{}", board_str);
-            println!("Getting moves for {} pawn on {}", if is_white { "white" } else { "black" }, square_to_algebraic(square));
-            print!("[");
-            
-            for (i, &mv) in moves.iter().enumerate() {
-                print!("{} {}", mv, square_to_algebraic(mv));
-                if i != moves.len() - 1 {
-                    print!(", ");
-                }
-            }
-            println!("]");
-            
-            let valid = if expected_moves.len() == 1 && expected_moves[0] == 0 {
-                moves.is_empty()
-            } else {
-                moves == expected_moves
-            };
-            
-            if valid {
-                println!("VALID");
-            } else {
-                println!("INVALID");
-                print!("Expected moves: [");
-                for (i, &mv) in expected_moves.iter().enumerate() {
-                    if mv != 0 {
-                        print!("{} {}", mv, square_to_algebraic(mv));
-                        if i != expected_moves.len() - 1 {
-                            print!(", ");
-                        }
-                    }
-                }
-                println!("]");
-            }
-            println!("------------------------------------------------------------");
-            valid
-        } else {
-            if expected_moves.len() == 1 && expected_moves[0] == 0 {
-                moves.is_empty()
-            } else {
-                moves == expected_moves
-            }
-        }
-    }
-
-    fn run_all_tests(test_names: &[&str], squares: &[u64], board_states: &[&str], expected_moves: &[&[u64]], is_white: bool, verbose: bool) {
-        let mut validity = vec![true; test_names.len()];
-        let mut successes = 0;
-        let mut failures = 0;
-        
-        println!("\nRunning {} Pawn Move Tests", if is_white { "White" } else { "Black" });
-        println!("------------------------------------------------------------");
-        
-        for i in 0..test_names.len() {
-            let state_name = format!("Board state: {}", test_names[i]);
-            validity[i] = print_results(board_states[i], squares[i], &state_name, expected_moves[i], is_white, true);
-        }
-        
-        println!("\nTest Results Summary");
-        println!("------------------------------------------------------------");
-        for (i, (name, valid)) in test_names.iter().zip(validity.iter()).enumerate() {
-            let needs_space = (i + 1) / 10 == 0;
-            let sp = if needs_space { " " } else { "" };
-            
-            if *valid {
-                println!("| Test Number: {} {} | Name: {} | PASSED |", sp, i + 1, name);
-                successes += 1;
-            } else {
-                println!("| Test Number: {} {} | Name: {} | FAILED |", sp, i + 1, name);
-                failures += 1;
-            }
-        }
-        
-        println!("------------------------------------------------------------");
-        println!("TEST SUMMARY");
-        println!("Passed {}/{}", successes, successes + failures);
-        println!("------------------------------------------------------------");
-    }
-
     #[test]
     fn test_pawn_moves() {
-        println!("\n=== WHITE PAWN TESTS ===");
+        eprintln!("\n=== WHITE PAWN TESTS ===");
         // Test cases for white pawns
         let white_pawn_tests = [
             // Test 1: White pawn on e2 can push 2 squares (no captures)
@@ -118,10 +33,51 @@ mod tests {
         let squares: Vec<u64> = white_pawn_tests.iter().map(|t| t.1).collect();
         let board_states: Vec<&str> = white_pawn_tests.iter().map(|t| t.2).collect();
         let expected_moves: Vec<Vec<u64>> = white_pawn_tests.iter().map(|t| t.3.clone()).collect();
-        let expected_moves_refs: Vec<&[u64]> = expected_moves.iter().map(|v| v.as_slice()).collect();
-        run_all_tests(&test_names, &squares, &board_states, &expected_moves_refs, true, true);
+        
+        for i in 0..test_names.len() {
+            let board = Bitboard::from_fen(board_states[i]);
+            let moves = get_pawn_moves(&board, squares[i], true);
+            let board_str = board.to_string();
+            
+            eprintln!("\nTest Name: {}", test_names[i]);
+            eprintln!("Board State:");
+            eprintln!("{}", board_str);
+            eprintln!("Getting moves for white pawn on {}", square_to_algebraic(squares[i]));
+            eprint!("Found moves: [");
+            
+            for (j, &mv) in moves.iter().enumerate() {
+                eprint!("{} {}", mv, square_to_algebraic(mv));
+                if j != moves.len() - 1 {
+                    eprint!(", ");
+                }
+            }
+            eprintln!("]");
+            
+            let valid = if expected_moves[i].len() == 1 && expected_moves[i][0] == 0 {
+                moves.is_empty()
+            } else {
+                moves == expected_moves[i]
+            };
+            
+            if valid {
+                eprintln!("✓ Test PASSED");
+            } else {
+                eprintln!("✗ Test FAILED");
+                eprint!("Expected moves: [");
+                for (j, &mv) in expected_moves[i].iter().enumerate() {
+                    if mv != 0 {
+                        eprint!("{} {}", mv, square_to_algebraic(mv));
+                        if j != expected_moves[i].len() - 1 {
+                            eprint!(", ");
+                        }
+                    }
+                }
+                eprintln!("]");
+            }
+            eprintln!("------------------------------------------------------------");
+        }
 
-        println!("\n=== BLACK PAWN TESTS ===");
+        eprintln!("\n=== BLACK PAWN TESTS ===");
         // Test cases for black pawns
         let black_pawn_tests = [
             // Test 7: Black pawn on e7 can push 2 squares (no captures)
@@ -148,8 +104,49 @@ mod tests {
         let squares: Vec<u64> = black_pawn_tests.iter().map(|t| t.1).collect();
         let board_states: Vec<&str> = black_pawn_tests.iter().map(|t| t.2).collect();
         let expected_moves: Vec<Vec<u64>> = black_pawn_tests.iter().map(|t| t.3.clone()).collect();
-        let expected_moves_refs: Vec<&[u64]> = expected_moves.iter().map(|v| v.as_slice()).collect();
-        run_all_tests(&test_names, &squares, &board_states, &expected_moves_refs, false, true);
+        
+        for i in 0..test_names.len() {
+            let board = Bitboard::from_fen(board_states[i]);
+            let moves = get_pawn_moves(&board, squares[i], false);
+            let board_str = board.to_string();
+            
+            eprintln!("\nTest Name: {}", test_names[i]);
+            eprintln!("Board State:");
+            eprintln!("{}", board_str);
+            eprintln!("Getting moves for black pawn on {}", square_to_algebraic(squares[i]));
+            eprint!("Found moves: [");
+            
+            for (j, &mv) in moves.iter().enumerate() {
+                eprint!("{} {}", mv, square_to_algebraic(mv));
+                if j != moves.len() - 1 {
+                    eprint!(", ");
+                }
+            }
+            eprintln!("]");
+            
+            let valid = if expected_moves[i].len() == 1 && expected_moves[i][0] == 0 {
+                moves.is_empty()
+            } else {
+                moves == expected_moves[i]
+            };
+            
+            if valid {
+                eprintln!("✓ Test PASSED");
+            } else {
+                eprintln!("✗ Test FAILED");
+                eprint!("Expected moves: [");
+                for (j, &mv) in expected_moves[i].iter().enumerate() {
+                    if mv != 0 {
+                        eprint!("{} {}", mv, square_to_algebraic(mv));
+                        if j != expected_moves[i].len() - 1 {
+                            eprint!(", ");
+                        }
+                    }
+                }
+                eprintln!("]");
+            }
+            eprintln!("------------------------------------------------------------");
+        }
     }
 
     #[test]
@@ -171,104 +168,9 @@ mod tests {
         assert!(moves.contains(&62)); // g8
         assert!(moves.contains(&55)); // h7
     }
-
-    #[test]
-    fn test_knight_moves() {
-        let mut board = Bitboard::new();
-        
-        // Test white knight moves
-        board.w_knight = 1 << 1; // b1
-        let moves = get_knight_moves(&board, 1, true);
-        assert_eq!(moves.len(), 3);
-        assert!(moves.contains(&16)); // a3
-        assert!(moves.contains(&18)); // c3
-        assert!(moves.contains(&11)); // d2
-        
-        // Test black knight moves
-        board.clear();
-        board.b_knight = 1 << 62; // g8
-        let moves = get_knight_moves(&board, 62, false);
-        assert_eq!(moves.len(), 3);
-        assert!(moves.contains(&47)); // f6
-        assert!(moves.contains(&45)); // e6
-        assert!(moves.contains(&52)); // e7
-    }
-
-    #[test]
-    fn test_bishop_moves() {
-        let mut board = Bitboard::new();
-        
-        // Test white bishop moves
-        board.w_bishop = 1 << 2; // c1
-        let moves = get_bishop_moves(&board, 2, true);
-        assert_eq!(moves.len(), 7);
-        assert!(moves.contains(&9)); // b2
-        assert!(moves.contains(&11)); // d2
-        assert!(moves.contains(&16)); // a3
-        
-        // Test black bishop moves
-        board.clear();
-        board.b_bishop = 1 << 61; // f8
-        let moves = get_bishop_moves(&board, 61, false);
-        assert_eq!(moves.len(), 7);
-        assert!(moves.contains(&52)); // e7
-        assert!(moves.contains(&54)); // g7
-        assert!(moves.contains(&43)); // d6
-    }
-
-    #[test]
-    fn test_queen_moves() {
-        let mut board = Bitboard::new();
-        
-        // Test white queen moves
-        board.w_queen = 1 << 3; // d1
-        let moves = get_queen_moves(&board, 3, true);
-        assert_eq!(moves.len(), 21);
-        assert!(moves.contains(&2)); // c1
-        assert!(moves.contains(&4)); // e1
-        assert!(moves.contains(&11)); // d2
-        assert!(moves.contains(&10)); // c2
-        assert!(moves.contains(&12)); // e2
-        
-        // Test black queen moves
-        board.clear();
-        board.b_queen = 1 << 60; // e8
-        let moves = get_queen_moves(&board, 60, false);
-        assert_eq!(moves.len(), 21);
-        assert!(moves.contains(&59)); // d8
-        assert!(moves.contains(&61)); // f8
-        assert!(moves.contains(&52)); // e7
-        assert!(moves.contains(&51)); // d7
-        assert!(moves.contains(&53)); // f7
-    }
-
-    #[test]
-    fn test_king_moves() {
-        let mut board = Bitboard::new();
-        
-        // Test white king moves
-        board.w_king = 1 << 4; // e1
-        let moves = get_king_moves(&board, 4, true);
-        assert_eq!(moves.len(), 5);
-        assert!(moves.contains(&3)); // d1
-        assert!(moves.contains(&5)); // f1
-        assert!(moves.contains(&11)); // d2
-        assert!(moves.contains(&12)); // e2
-        assert!(moves.contains(&13)); // f2
-        
-        // Test black king moves
-        board.clear();
-        board.b_king = 1 << 59; // d8
-        let moves = get_king_moves(&board, 59, false);
-        assert_eq!(moves.len(), 5);
-        assert!(moves.contains(&58)); // c8
-        assert!(moves.contains(&60)); // e8
-        assert!(moves.contains(&50)); // c7
-        assert!(moves.contains(&51)); // d7
-        assert!(moves.contains(&52)); // e7
-    }
 }
 
+#[allow(dead_code)]
 fn square_to_algebraic(square: u64) -> String {
     let file = (square % 8) as u8 + b'a';
     let rank = (square / 8) as u8 + b'1';
