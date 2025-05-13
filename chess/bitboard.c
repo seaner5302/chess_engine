@@ -58,7 +58,7 @@ char *bitboard_bitstr(Bitboard *bitboard, int new_lines)
             for (int i = 0; i < 64; i++)
             {
                 bitboard_str[str_index++] = (char)(((bitboard->Wpawn) >> i & 1) + 48);
-                if ((str_index != 0 && (str_index - 2 - 3 * num_board) % 9 == 0 && new_lines) | i == 63)
+                if ((str_index != 0 && (str_index - 2 - 3 * num_board) % 9 == 0 && new_lines) | (i == 63))
                 {
                     bitboard_str[str_index++] = '\n';
                 }
@@ -69,7 +69,7 @@ char *bitboard_bitstr(Bitboard *bitboard, int new_lines)
             for (int i = 0; i < 64; i++)
             {
                 bitboard_str[str_index++] = (char)(((bitboard->Wknight) >> i & 1) + 48);
-                if ((str_index != 0 && (str_index - 2 - 3 * num_board) % 9 == 0 && new_lines) | i == 63)
+                if ((str_index != 0 && (str_index - 2 - 3 * num_board) % 9 == 0 && new_lines) | (i == 63))
                 {
                     bitboard_str[str_index++] = '\n';
                 }
@@ -80,7 +80,7 @@ char *bitboard_bitstr(Bitboard *bitboard, int new_lines)
             for (int i = 0; i < 64; i++)
             {
                 bitboard_str[str_index++] = (char)(((bitboard->Wbishop) >> i & 1) + 48);
-                if ((str_index != 0 && (str_index - 2 - 3 * num_board) % 9 == 0 && new_lines) | i == 63)
+                if ((str_index != 0 && (str_index - 2 - 3 * num_board) % 9 == 0 && new_lines) | (i == 63))
                 {
                     bitboard_str[str_index++] = '\n';
                 }
@@ -91,7 +91,7 @@ char *bitboard_bitstr(Bitboard *bitboard, int new_lines)
             for (int i = 0; i < 64; i++)
             {
                 bitboard_str[str_index++] = (char)(((bitboard->Wrook) >> i & 1) + 48);
-                if ((str_index != 0 && (str_index - 2 - 3 * num_board) % 9 == 0 && new_lines) | i == 63)
+                if ((str_index != 0 && (str_index - 2 - 3 * num_board) % 9 == 0 && new_lines) | (i == 63))
                 {
                     bitboard_str[str_index++] = '\n';
                 }
@@ -102,7 +102,7 @@ char *bitboard_bitstr(Bitboard *bitboard, int new_lines)
             for (int i = 0; i < 64; i++)
             {
                 bitboard_str[str_index++] = (char)(((bitboard->Wqueen) >> i & 1) + 48);
-                if ((str_index != 0 && (str_index - 2 - 3 * num_board) % 9 == 0 && new_lines) | i == 63)
+                if ((str_index != 0 && (str_index - 2 - 3 * num_board) % 9 == 0 && new_lines) | (i == 63))
                 {
                     bitboard_str[str_index++] = '\n';
                 }
@@ -114,7 +114,7 @@ char *bitboard_bitstr(Bitboard *bitboard, int new_lines)
             for (int i = 0; i < 64; i++)
             {
                 bitboard_str[str_index++] = (char)(((bitboard->Wking) >> i & 1) + 48);
-                if ((str_index != 0 && (str_index - 2 - 3 * num_board) % 9 == 0 && new_lines) | i == 63)
+                if ((str_index != 0 && (str_index - 2 - 3 * num_board) % 9 == 0 && new_lines) | (i == 63))
                 {
                     bitboard_str[str_index++] = '\n';
                 }
@@ -126,7 +126,7 @@ char *bitboard_bitstr(Bitboard *bitboard, int new_lines)
             for (int i = 0; i < 64; i++)
             {
                 bitboard_str[str_index++] = (char)(((bitboard->Bpawn) >> i & 1) + 48);
-                if ((str_index != 0 && (str_index - 2 - 3 * num_board) % 9 == 0 && new_lines) | i == 63)
+                if ((str_index != 0 && (str_index - 2 - 3 * num_board) % 9 == 0 && new_lines) | (i == 63))
                 {
                     bitboard_str[str_index++] = '\n';
                 }
@@ -138,7 +138,7 @@ char *bitboard_bitstr(Bitboard *bitboard, int new_lines)
             for (int i = 0; i < 64; i++)
             {
                 bitboard_str[str_index++] = (char)(((bitboard->Bknight) >> i & 1) + 48);
-                if ((str_index != 0 && (str_index - 2 - 3 * num_board) % 9 == 0 && new_lines) | i == 63)
+                if ((str_index != 0 && (str_index - 2 - 3 * num_board) % 9 == 0 && new_lines) | (i == 63))
                 {
                     bitboard_str[str_index++] = '\n';
                 }
@@ -149,7 +149,7 @@ char *bitboard_bitstr(Bitboard *bitboard, int new_lines)
             for (int i = 0; i < 64; i++)
             {
                 bitboard_str[str_index++] = (char)(((bitboard->Bbishop) >> i & 1) + 48);
-                if ((str_index != 0 && (str_index - 2 - 3 * num_board) % 9 == 0 && new_lines) | i == 63)
+                if ((str_index != 0 && (str_index - 2 - 3 * num_board) % 9 == 0 && new_lines) | (i == 63))
                 {
                     bitboard_str[str_index++] = '\n';
                 }
@@ -161,7 +161,7 @@ char *bitboard_bitstr(Bitboard *bitboard, int new_lines)
             for (int i = 0; i < 64; i++)
             {
                 bitboard_str[str_index++] = (char)(((bitboard->Brook) >> i & 1) + 48);
-                if ((str_index != 0 && (str_index - 2 - 3 * num_board) % 9 == 0 && new_lines) | i == 63)
+                if ((str_index != 0 && (str_index - 2 - 3 * num_board) % 9 == 0 && new_lines) | (i == 63))
                 {
                     bitboard_str[str_index++] = '\n';
                 }
@@ -172,7 +172,7 @@ char *bitboard_bitstr(Bitboard *bitboard, int new_lines)
             for (int i = 0; i < 64; i++)
             {
                 bitboard_str[str_index++] = (char)(((bitboard->Bqueen) >> i & 1) + 48);
-                if ((str_index != 0 && (str_index - 2 - 3 * num_board) % 9 == 0 && new_lines) | i == 63)
+                if ((str_index != 0 && (str_index - 2 - 3 * num_board) % 9 == 0 && new_lines) | (i == 63))
                 {
                     bitboard_str[str_index++] = '\n';
                 }
@@ -184,7 +184,7 @@ char *bitboard_bitstr(Bitboard *bitboard, int new_lines)
             for (int i = 0; i < 64; i++)
             {
                 bitboard_str[str_index++] = (char)(((bitboard->Bking) >> i & 1) + 48);
-                if ((str_index != 0 && (str_index - 2 - 3 * num_board) % 9 == 0 && new_lines) | i == 63)
+                if ((str_index != 0 && (str_index - 2 - 3 * num_board) % 9 == 0 && new_lines) | (i == 63))
                 {
                     bitboard_str[str_index++] = '\n';
                 }
