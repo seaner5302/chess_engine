@@ -13,13 +13,13 @@ mod tests {
             ("WP push 2, no captures", 12, "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", vec![20, 28]),
             
             // Test 2: White pawn on e2 can only push 1 square (blocked by black pawn)
-            ("WP push 1, no captures", 12, "rnbqkbnr/pppppppp/8/3p4/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", vec![20, 0]),
+            ("WP push 1, no captures", 12, "rnbqkbnr/pppppppp/8/3p4/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", vec![20]),
             
             // Test 3: White pawn on e3 can only push 1 square (blocked by black pawn)
-            ("WP push 1, no captures", 20, "rnbqkbnr/pppppppp/3p4/8/8/4P3/PPPP1PPP/RNBQKBNR w KQkq - 0 1", vec![28, 0]),
+            ("WP push 1, no captures", 20, "rnbqkbnr/pppppppp/3p4/8/8/4P3/PPPP1PPP/RNBQKBNR w KQkq - 0 1", vec![28]),
             
             // Test 4: White pawn on e2 cannot move (blocked by black pawn)
-            ("WP no push, no captures", 12, "rnbqkbnr/pppppppp/3p4/8/8/3p4/PPPPPPPP/RNBQKBNR w KQkq - 0 1", vec![0]),
+            ("WP no push, no captures", 12, "rnbqkbnr/pppppppp/3p4/8/8/3p4/PPPPPPPP/RNBQKBNR w KQkq - 0 1", vec![]),
             
             // Test 5: White pawn on e2 can capture two black pawns
             ("WP no push, 2 captures", 12, "rnbqkbnr/pppppppp/2p1p3/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", vec![19, 21]),
@@ -53,7 +53,7 @@ mod tests {
             }
             eprintln!("]");
             
-            let valid = if expected_moves[i].len() == 1 && expected_moves[i][0] == 0 {
+            let valid = if expected_moves[i].is_empty() {
                 moves.is_empty()
             } else {
                 moves == expected_moves[i]
@@ -65,16 +65,16 @@ mod tests {
                 eprintln!("✗ Test FAILED");
                 eprint!("Expected moves: [");
                 for (j, &mv) in expected_moves[i].iter().enumerate() {
-                    if mv != 0 {
-                        eprint!("{} {}", mv, square_to_algebraic(mv));
-                        if j != expected_moves[i].len() - 1 {
-                            eprint!(", ");
-                        }
+                    eprint!("{} {}", mv, square_to_algebraic(mv));
+                    if j != expected_moves[i].len() - 1 {
+                        eprint!(", ");
                     }
                 }
                 eprintln!("]");
             }
             eprintln!("------------------------------------------------------------");
+            
+            assert!(valid, "Test '{}' failed: moves did not match expected output", test_names[i]);
         }
 
         eprintln!("\n=== BLACK PAWN TESTS ===");
@@ -84,13 +84,13 @@ mod tests {
             ("BP push 2, no captures", 52, "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", vec![44, 36]),
             
             // Test 8: Black pawn on e7 can only push 1 square (blocked by white pawn)
-            ("BP push 1, no captures", 52, "rnbqkbnr/pppppppp/8/8/3P4/8/PPP1PPPP/RNBQKBNR w KQkq - 0 1", vec![44, 0]),
+            ("BP push 1, no captures", 52, "rnbqkbnr/pppppppp/8/8/3P4/8/PPP1PPPP/RNBQKBNR w KQkq - 0 1", vec![44]),
             
             // Test 9: Black pawn on e6 can only push 1 square (blocked by white pawn)
-            ("BP push 1, no captures", 44, "rnbqkbnr/ppppp1pp/4p3/8/3P4/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", vec![36, 0]),
+            ("BP push 1, no captures", 44, "rnbqkbnr/ppppp1pp/4p3/8/3P4/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", vec![36]),
             
             // Test 10: Black pawn on e7 cannot move (blocked by white pawn)
-            ("BP no push, no captures", 52, "rnbqkbnr/pppppppp/8/8/8/3P4/PPP1PPPP/RNBQKBNR w KQkq - 0 1", vec![0]),
+            ("BP no push, no captures", 52, "rnbqkbnr/pppppppp/8/8/8/3P4/PPP1PPPP/RNBQKBNR w KQkq - 0 1", vec![]),
             
             // Test 11: Black pawn on e7 can capture two white pawns
             ("BP no push, 2 captures", 52, "rnbqkbnr/pppppppp/8/8/2P1P3/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", vec![43, 45]),
@@ -124,7 +124,7 @@ mod tests {
             }
             eprintln!("]");
             
-            let valid = if expected_moves[i].len() == 1 && expected_moves[i][0] == 0 {
+            let valid = if expected_moves[i].is_empty() {
                 moves.is_empty()
             } else {
                 moves == expected_moves[i]
@@ -136,16 +136,16 @@ mod tests {
                 eprintln!("✗ Test FAILED");
                 eprint!("Expected moves: [");
                 for (j, &mv) in expected_moves[i].iter().enumerate() {
-                    if mv != 0 {
-                        eprint!("{} {}", mv, square_to_algebraic(mv));
-                        if j != expected_moves[i].len() - 1 {
-                            eprint!(", ");
-                        }
+                    eprint!("{} {}", mv, square_to_algebraic(mv));
+                    if j != expected_moves[i].len() - 1 {
+                        eprint!(", ");
                     }
                 }
                 eprintln!("]");
             }
             eprintln!("------------------------------------------------------------");
+            
+            assert!(valid, "Test '{}' failed: moves did not match expected output", test_names[i]);
         }
     }
 
