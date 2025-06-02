@@ -53,43 +53,88 @@ int get_piece_color(Bitboard *board, int square) {
 
 unsigned int *get_pawn_moves(Bitboard *board, int square) {
     unsigned int *moves = calloc(4, 4);
-    int move_index= 0;
+    int move_index = 0;
     int flipped_square = 63-square;
+    
+    // Verify we have a pawn
     if (get_piece_type(board, flipped_square) != 1) {
         printf("%d\n",get_piece_type(board, flipped_square));
         printf("Square selected does not contain a pawn %d\n", square);
         return moves;
     }
+
+    // White pawn moves (uppercase P in FEN)
     if (get_piece_color(board, flipped_square)) {
-        if (!(get_occupied_squares(board) >> (flipped_square-8) & 1)) {
-            moves[move_index++] = square+8;
-            if (square >= 8 && square <= 16 && !(get_occupied_squares(board) >> (flipped_square-16) & 1)) {
-                moves[move_index++] = square+16;
+        // Single push forward
+        int target_square = flipped_square - 8;
+        if (target_square >= 0 && !(get_occupied_squares(board) >> target_square & 1)) {
+            moves[move_index++] = square + 8;
+            
+            // Double push from starting rank if path is clear
+            if (square >= 8 && square <= 15) {
+                target_square = flipped_square - 16;
+                if (target_square >= 0 && !(get_occupied_squares(board) >> target_square & 1)) {
+                    moves[move_index++] = square + 16;
+                }
             }
         }
-        // check if capture is possible
-        if (!get_piece_color(board, flipped_square-7)) {
-            moves[move_index++] = square+7;
+        
+        // Captures for white pawns - look for black pieces (lowercase in FEN)
+        // Check right diagonal capture (if not on h-file)
+        if ((square+1) % 8 != 0) {
+            int target_square = flipped_square-7;
+            if (target_square >= 0 && target_square < 64 &&
+                get_piece_color(board, target_square) == 0 && 
+                get_piece_type(board, target_square) != 0) {
+                moves[move_index++] = square+9;
+            }
         }
-        if (!get_piece_color(board, flipped_square-9)) {
-            moves[move_index++] = square+9;
+        
+        // Check left diagonal capture (if not on a-file)
+        if ((square+1) % 8 != 1) {
+            int target_square = flipped_square-9;
+            if (target_square >= 0 && target_square < 64 &&
+                get_piece_color(board, target_square) == 0 && 
+                get_piece_type(board, target_square) != 0) {
+                moves[move_index++] = square+7;
+            }
         }
     }
+    // Black pawn moves (lowercase p in FEN)
     else {
+        // Single push forward
         if (!(get_occupied_squares(board) >> (flipped_square+8) & 1)) {
             moves[move_index++] = square-8;
-            if (square >= 48 && square <= 56 && !(get_occupied_squares(board) >> (flipped_square+16) & 1)) {
+            
+            // Double push from starting rank if path is clear
+            if (square >= 48 && square <= 55 && 
+                !(get_occupied_squares(board) >> (flipped_square+16) & 1)) {
                 moves[move_index++] = square-16;
             }
         }
-        // check if capture is possible
-        if ((square+1) % 8 != 1 && get_piece_color(board, flipped_square+7) == 1) {
-            moves[move_index++] = square-7;
+        
+        // Captures for black pawns - look for white pieces (uppercase in FEN)
+        // Check right diagonal capture (if not on h-file)
+        if ((square+1) % 8 != 0) {
+            int target_square = flipped_square+9;
+            if (target_square >= 0 && target_square < 64 &&
+                get_piece_color(board, target_square) == 1 && 
+                get_piece_type(board, target_square) != 0) {
+                moves[move_index++] = square-7;
+            }
         }
-        if ((square+1) % 8 != 0 && get_piece_color(board, flipped_square+9) == 1) {
-            moves[move_index++] = square-9;
+        
+        // Check left diagonal capture (if not on a-file)
+        if ((square+1) % 8 != 1) {
+            int target_square = flipped_square+7;
+            if (target_square >= 0 && target_square < 64 &&
+                get_piece_color(board, target_square) == 1 && 
+                get_piece_type(board, target_square) != 0) {
+                moves[move_index++] = square-9;
+            }
         }
     }
+    
     return moves;
 }
 

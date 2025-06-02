@@ -82,9 +82,9 @@ void run_all_tests(char test_names[12][30], unsigned int squares[12],
 }
 
 int main(void) {
-    unsigned int expected_moves[12][2] = {{20,28},{20,0},{28,0},{0,0},{19,21},{23,0},
+    unsigned int expected_moves[12][2] = {{20,28},{20,0},{28,0},{0,0},{19,21},{30,0},
                                           {44, 36}, {44, 0}, {36, 0}, {0, 0}, {45,43}, {47, 0}};
-    unsigned int squares[12] = {12, 12, 20, 12, 12, 16,
+    unsigned int squares[12] = {12, 12, 20, 12, 12, 23,
                                 52, 52, 44, 52, 52, 56};
     // Bitboard bitboard;
     // unsigned int *moves;
@@ -104,9 +104,9 @@ int main(void) {
     char board_states[12][80] = {"rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq 0 0",
                                  "rnbqkbnr/3p4/8/3p4/8/8/PPPPPPPP/RNBQKBNR w KQkq 0 0",
                                  "rnbqkbnr/8/3p4/8/8/8/PPPPPPPP/RNBQKBNR w KQkq 0 0",
-                                 "rnbqkbnr/3p4/3p4/8/8/8/PPPPPPPP/RNBQKBNR w KQkq 0 0",
-                                 "rnbqkbnr/3p4/2PPP3/8/8/8/PPPPPPPP/RNBQKBNR w KQkq 0 0",
-                                 "rnbqkbnr/7p/PPPPPPPP/8/8/8/PPPPPPPP/RNBQKBNR w KQkq 0 0",
+                                 "rnbqkbnr/3p4/3p4/8/8/3p4/PPPPPPPP/RNBQKBNR w KQkq 0 0",
+                                 "rnbqkbnr/3p4/2ppp3/8/8/8/PPPPPPPP/RNBQKBNR w KQkq 0 0",
+                                 "rnbqkbnr/pppppppp/7p/8/8/7P/PPPPPPPP/RNBQKBNR w KQkq 0 0",
                                  "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq 0 0",
                                  "rnbqkbnr/pppppppp/8/8/3p4/8/PPPPPPPP/RNBQKBNR w KQkq 0 0",
                                  "rnbqkbnr/pppppppp/8/8/8/3P4/PPPPPPPP/RNBQKBNR w KQkq 0 0",
